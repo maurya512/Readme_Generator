@@ -65,13 +65,13 @@ function generateMarkdown(response) {
     # ${response.projectTitle}
 
     # Table Contents
-    - [Description](#description)
-    - [Instructions](#instructions)
-    - [Usage](#usage)
-    - [Original Creator](#original creator)
-    - [License](#license)
-    - [Username](#username)
-    - [User email](#user email)
+    - [Description](#projectDescription)
+    - [Instructions](#projectInstructions)
+    - [Usage](#projectUsage)
+    - [Original Creator](#projectDeployer)
+    - [License](#projectLicense)
+    - [Username](#userName)
+    - [User email](#userEmail)
 
     ## Description:
     ![License](https://img.shields.io/badge/License-${response.projectLicense}-blue.svg "License Badge")
@@ -95,3 +95,19 @@ function generateMarkdown(response) {
         -[Email Address](${response.userEmail})
     `;
 }
+
+// function to intialize the program
+async function init() {
+    try {
+        const response = await askQuestions();
+        const readMe = generateMarkdown(response);
+        await writeFileAsync("README.md", readMe);
+        console.log("Successfully created a ReadMe.md file");
+    }
+    catch(err) {
+        console.log(err);
+    }
+}
+
+// calling the initializing function
+init();
