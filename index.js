@@ -10,7 +10,7 @@ function askQuestions() {
     return inquirer.prompt([
         {
             type: "input",
-            message: "What is the name of the proejct?",
+            message: "What is the name of the project?",
             name: "projectTitle"
         },
         {
@@ -46,6 +46,21 @@ function askQuestions() {
         },
         {
             type: "input",
+            message: "What tests have been conducted on this project?",
+            name: "projectTest"
+        },
+        {
+            type: "input",
+            message: "Who can contribute to this project?",
+            name: "projectContributors"
+        },
+        {
+            type: "input",
+            message: "What questions do you have for the user?",
+            name: "questions"
+        },
+        {
+            type: "input",
             message: "Enter your github username",
             name: "userName"
         },
@@ -62,37 +77,51 @@ console.log("test ran successfully");
 // a function that creates a markdown file inside of js
 function generateMarkdown(response) {
     return `
-    # ${response.projectTitle}
+# ${response.projectTitle}
 
-    # Table Contents
-    - [Description](#projectDescription)
-    - [Instructions](#projectInstructions)
-    - [Usage](#projectUsage)
-    - [Original Creator](#projectDeployer)
-    - [License](#projectLicense)
-    - [Username](#userName)
-    - [User email](#userEmail)
+# Table Contents
 
-    ## Description:
-    ![License](https://img.shields.io/badge/License-${response.projectLicense}-blue.svg "License Badge")
+- [Description](#Description)
+- [Installation Instructions](#Instructions)
+- [Project Usage](#Usage)
+- [Project Original Contributor](#Deployer)
+- [Project License](#License)
+- [Project Test](#Project Test)
+- [Project Contributors](#Project Contributors)
+- [Project Questions](#Questions)
+- [Original Creator's info](#Deployer's info)
+
+## Description:
+![License](https://img.shields.io/badge/License-${response.projectLicense}-blue.svg "License Badge")
+
     ${response.projectDescription}
 
-    ## Installation Instructions:
+## Installation Instructions:
     ${response.projectInstructions}
 
-    ## Project Usage:
+## Project Usage:
     ${response.projectUsage}
 
-    ## Project Original Contributor:
+## Project Original Contributor:
     ${response.projectDeployer}
 
-    ## Project License:
-        For more info about the license click the link below:
-        -![License](https://opensource.org/licenses/${response.projectLicense})
+## Project Testing:
+    ${response.projectTest}
 
-    ## Original Creator's info:
-        -[Github Profile](https://github.com/${response.userName})
-        -[Email Address](${response.userEmail})
+## Project Contributors:
+    ${response.projectContributors}
+
+## Project Questions:
+    If you have any questions please direct them at
+    [User](https://github.com/${response.userName})
+
+## Project License:
+    For more info about the license click the link below:
+- [License](https://opensource.org/licenses/${response.projectLicense})
+
+## Original Creator's info:
+- [Github Profile](https://github.com/${response.userName})
+- [Email Address](${response.userEmail})
     `;
 }
 
@@ -104,7 +133,7 @@ async function init() {
         await writeFileAsync("README.md", readMe);
         console.log("Successfully created a ReadMe.md file");
     }
-    catch(err) {
+    catch (err) {
         console.log(err);
     }
 }
