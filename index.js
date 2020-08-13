@@ -58,3 +58,40 @@ function askQuestions() {
 }
 // just a console log to check no issues pertain thus far
 console.log("test ran successfully");
+
+// a function that creates a markdown file inside of js
+function generateMarkdown(response) {
+    return `
+    # ${response.projectTitle}
+
+    # Table Contents
+    - [Description](#description)
+    - [Instructions](#instructions)
+    - [Usage](#usage)
+    - [Original Creator](#original creator)
+    - [License](#license)
+    - [Username](#username)
+    - [User email](#user email)
+
+    ## Description:
+    ![License](https://img.shields.io/badge/License-${response.projectLicense}-blue.svg "License Badge")
+    ${response.projectDescription}
+
+    ## Installation Instructions:
+    ${response.projectInstructions}
+
+    ## Project Usage:
+    ${response.projectUsage}
+
+    ## Project Original Contributor:
+    ${response.projectDeployer}
+
+    ## Project License:
+        For more info about the license click the link below:
+        -![License](https://opensource.org/licenses/${response.projectLicense})
+
+    ## Original Creator's info:
+        -[Github Profile](https://github.com/${response.userName})
+        -[Email Address](${response.userEmail})
+    `;
+}
