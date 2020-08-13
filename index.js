@@ -86,10 +86,10 @@ function generateMarkdown(response) {
 - [Project Usage](#Usage)
 - [Project Original Contributor](#Deployer)
 - [Project License](#License)
-- [Project Test](#Project Test)
-- [Project Contributors](#Project Contributors)
+- [Project Test]()
+- [Project Contributors]()
 - [Project Questions](#Questions)
-- [Original Creator's info](#Deployer's info)
+- [Original Creator's info]()
 
 ## Description:
 ![License](https://img.shields.io/badge/License-${response.projectLicense}-blue.svg "License Badge")
